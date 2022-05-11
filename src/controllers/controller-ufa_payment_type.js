@@ -7,108 +7,106 @@ pool.on('error',(err)=> {
 });
 
 module.exports ={
-    // Ambil data semua ufa_category
+    // Ambil data semua ufa_payment_type
     getDataUfa_category(req,res){
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM ufa_category;
+                SELECT * FROM ufa_payment_type;
                 `
             , function (error, results) {
                 if(error) throw error;  
                 res.send({ 
                     success: true, 
-                    message: 'Berhasil ambil data Category',
+                    message: 'Berhasil ambil data Payment Type',
                     data: results 
                 });
             });
             connection.release();
         })
     },
-    // Ambil data ufa_category berdasarkan ID
+    // Ambil data ufa_payment_type berdasarkan ID
     getDataUfa_categoryByID(req,res){
         let id = req.params.id;
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM ufa_category WHERE category_id = ?;
+                SELECT * FROM ufa_payment_type WHERE payment_type_id = ?;
                 `
             , [id],
             function (error, results) {
                 if(error) throw error;  
                 res.send({ 
                     success: true, 
-                    message: 'Berhasil ambil data Category',
+                    message: 'Berhasil ambil data Payment Type',
                     data: results
                 });
             });
             connection.release();
         })
     },
-    // Simpan data ufa_category
+    // Simpan data ufa_payment_type
     addDataUfa_category(req,res){
         let data = {
-            ufa_category_name : req.body.category_name,
-            ufa_category_is_active : req.body.is_active
+            ufa_payment_type_name : req.body.payment_type_name
         }
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                INSERT INTO ufa_category SET ?;
+                INSERT INTO ufa_payment_type SET ?;
                 `
             , [data],
             function (error, results) {
                 if(error) throw error;  
                 res.send({ 
                     success: true, 
-                    message: 'Berhasil tambah data Category',
+                    message: 'Berhasil tambah data Payment Type',
                 });
             });
             connection.release();
         })
     },
-    // Update data ufa_category
+    // Update data ufa_payment_type
     editDataUfa_category(req,res){
         let dataEdit = {
-            ufa_category_name : req.body.category_name,
-            ufa_category_is_active : req.body.is_active
+            ufa_payment_type_name : req.body.payment_type_name
         }
         let id = req.body.id
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                UPDATE ufa_category SET ? WHERE category_id = ?;
+                UPDATE ufa_payment_type SET ? WHERE payment_type_id = ?;
                 `
             , [dataEdit, id],
             function (error, results) {
                 if(error) throw error;  
                 res.send({ 
                     success: true, 
-                    message: 'Berhasil edit data Category',
+                    message: 'Berhasil edit data Payment Type',
                 });
             });
             connection.release();
         })
     },
-    // Delete data ufa_category
+    // Delete data ufa_payment_type
     deleteDataUfa_category(req,res){
         let id = req.body.id
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                DELETE FROM ufa_category WHERE category_id = ?;
+                DELETE FROM ufa_payment_type WHERE payment_type_id = ?;
                 `
             , [id],
             function (error, results) {
                 if(error) throw error;  
                 res.send({ 
                     success: true, 
-                    message: 'Berhasil hapus data Category'
+                    message: 'Berhasil hapus data Payment Type'
                 });
             });
             connection.release();

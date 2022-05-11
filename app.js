@@ -86,8 +86,11 @@ app.post('/login',
     }
 );
 
-const appRoute = require('./src/routes/ufa_resto');
-app.use('/', isAuthenticated, appRoute);
+const appRouteCategory = require('./src/routes/ufa_category');
+app.use('/', isAuthenticated, appRouteCategory);
+
+const appRoutePaymentType = require('./src/routes/ufa_payment_type');
+app.use('/', isAuthenticated, appRoutePaymentType);
 
 app.listen(8080, ()=>{
     console.log('Server Berjalan di Port : 8080');
