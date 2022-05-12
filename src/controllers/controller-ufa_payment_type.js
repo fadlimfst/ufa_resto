@@ -8,7 +8,7 @@ pool.on('error',(err)=> {
 
 module.exports ={
     // Ambil data semua ufa_payment_type
-    getDataUfa_category(req,res){
+    getDataUfa_payment_type(req,res){
         pool.getConnection(function(err, connection) {
             if (err) throw err;
             connection.query(
@@ -27,7 +27,7 @@ module.exports ={
         })
     },
     // Ambil data ufa_payment_type berdasarkan ID
-    getDataUfa_categoryByID(req,res){
+    getDataUfa_payment_typeByID(req,res){
         let id = req.params.id;
         pool.getConnection(function(err, connection) {
             if (err) throw err;
@@ -48,9 +48,9 @@ module.exports ={
         })
     },
     // Simpan data ufa_payment_type
-    addDataUfa_category(req,res){
+    addDataUfa_payment_type(req,res){
         let data = {
-            ufa_payment_type_name : req.body.payment_type_name
+            payment_type_name : req.body.payment_type_name
         }
         pool.getConnection(function(err, connection) {
             if (err) throw err;
@@ -70,9 +70,9 @@ module.exports ={
         })
     },
     // Update data ufa_payment_type
-    editDataUfa_category(req,res){
+    editDataUfa_payment_type(req,res){
         let dataEdit = {
-            ufa_payment_type_name : req.body.payment_type_name
+            payment_type_name : req.body.payment_type_name
         }
         let id = req.body.id
         pool.getConnection(function(err, connection) {
@@ -93,7 +93,7 @@ module.exports ={
         })
     },
     // Delete data ufa_payment_type
-    deleteDataUfa_category(req,res){
+    deleteDataUfa_payment_type(req,res){
         let id = req.body.id
         pool.getConnection(function(err, connection) {
             if (err) throw err;

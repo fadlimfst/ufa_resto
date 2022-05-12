@@ -50,8 +50,8 @@ module.exports ={
     // Simpan data ufa_category
     addDataUfa_category(req,res){
         let data = {
-            ufa_category_name : req.body.category_name,
-            ufa_category_is_active : req.body.is_active
+            category_name : req.body.category_name,
+            is_active : req.body.is_active
         }
         pool.getConnection(function(err, connection) {
             if (err) throw err;
@@ -73,8 +73,8 @@ module.exports ={
     // Update data ufa_category
     editDataUfa_category(req,res){
         let dataEdit = {
-            ufa_category_name : req.body.category_name,
-            ufa_category_is_active : req.body.is_active
+            category_name : req.body.category_name,
+            is_active : req.body.is_active
         }
         let id = req.body.id
         pool.getConnection(function(err, connection) {
